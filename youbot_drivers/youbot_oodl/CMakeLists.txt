@@ -1,59 +1,46 @@
-cmake_minimum_required(VERSION 2.4.6)
-include($ENV{ROS_ROOT}/core/rosbuild/rosbuild.cmake)
+cmake_minimum_required(VERSION 2.8.3)
+project(youbot_oodl)
 
-## check required prerequisites
-SET(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/external/cmake_modules")
-SET(Boost_ADDITIONAL_VERSIONS "1.39" "1.39.0" "1.40" "1.40.0" "1.41" "1.41.0" "1.42" "1.42.0" "1.43" "1.43.0" "1.44" "1.44.0" "1.45" "1.45.0" "1.46" "1.46.0")
-FIND_PACKAGE(Boost REQUIRED COMPONENTS thread date_time filesystem system)
+find_package(catkin REQUIRED COMPONENTS message_generation std_msgs roscpp actionlib tf)
+find_package(Boost REQUIRED COMPONENTS thread date_time filesystem system)
+find_package(youbot_driver)
+
+if (youbot_driver_FOUND)
+	message("found y")
+	message("${youbot_driver_INCLUDE_DIRS}")
+endif (youbot_driver_FOUND)
 
 
-rosbuild_find_ros_package(youbot_driver)
+add_message_files(FILES PowerBoardState.msg)
+generate_messages(DEPENDENCIES std_msgs)
+
+catkin_package()
 
 ## preprocessor definitions
 ADD_DEFINITIONS(-DYOUBOT_CONFIGURATIONS_DIR="${youbot_driver_PACKAGE_PATH}/config/")
 
-
-# Set the build type.  Options are:
-#  Coverage       : w/ debug symbols, w/o optimization, w/ code-coverage
-#  Debug          : w/ debug symbols, w/o optimization
-#  Release        : w/o debug symbols, w/ optimization
-#  RelWithDebInfo : w/ debug symbols, w/ optimization
-#  MinSizeRel     : w/o debug symbols, w/ optimization, stripped binaries
-#set(ROS_BUILD_TYPE RelWithDebInfo)
-
-rosbuild_init()
-
-#set the default path for built executables to the "bin" directory
-set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
-#set the default path for built libraries to the "lib" directory
-set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
-
-#uncomment if you have defined messages
-#rosbuild_genmsg()
-#uncomment if you have defined services
-#rosbuild_gensrv()
-
-#common commands for building c++ executables and libraries
-#rosbuild_add_library(${PROJECT_NAME} src/example.cpp)
-#target_link_libraries(${PROJECT_NAME} another_library)
-#rosbuild_add_boost_directories()
-#rosbuild_link_boost(${PROJECT_NAME} thread)
-
-## Set Compilter flags
+## Set Compiler flags
 INCLUDE_DIRECTORIES(
-	${OODL_YOUBOT_INCLUDE_DIR}
+	include
+	${catkin_INCLUDE_DIRS}
 	${Boost_INCLUDE_DIR}
+	${youbot_driver_INCLUDE_DIRS}
 )	
 
 
-rosbuild_add_executable(youbot_oodl 
+add_executable(youbot_oodl 
     src/youbot_oodl.cpp 
     src/YouBotOODLWrapper.cpp
     src/YouBotConfiguration.cpp
     src/joint_state_observer_oodl.cpp
 )
 
-target_link_libraries(youbot_oodl ${OODL_YOUBOT_LIBRARIES} ${Boost_LIBRARIES})
+target_link_libraries(youbot_oodl ${catkin_LIBRARIES} ${Boost_LIBRARIES} ${youbot_driver_LIBRARIES})
+
+install(DIRECTORY launch/
+	DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/launch
+)
+
 
 OPTION(USE_SETCAP "Set permissions to access ethernet interface without sudo" ON)
 
@@ -70,14 +57,22 @@ add_custom_command(TARGET youbot_oodl POST_BUILD
 )    
 endif(USE_SETCAP)
 
-rosbuild_add_executable(youbot_arm_test 
+#test programs
+add_executable(youbot_arm_test 
     examples/youbot_arm_test.cpp 
 )
+target_link_libraries(youbot_arm_test ${catkin_LIBRARIES} ${Boost_LIBRARIES} ${youbot_driver_LIBRARIES})
 
-rosbuild_add_executable(youbot_2nd_arm_test 
+add_executable(youbot_2nd_arm_test 
     examples/youbot_2nd_arm_test.cpp 
 )
+target_link_libraries(youbot_2nd_arm_test ${catkin_LIBRARIES} ${Boost_LIBRARIES} ${youbot_driver_LIBRARIES})
 
-#rosbuild_add_executable(youbot_arm_velocity_test 
+
+install(TARGETS youbot_oodl youbot_arm_test
+  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
+
+#add_executable(youbot_arm_velocity_test 
 #    examples/youbot_arm_velocity_test.cpp 
 #)
