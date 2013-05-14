@@ -3,14 +3,7 @@ project(youbot_oodl)
 
 find_package(catkin REQUIRED COMPONENTS message_generation std_msgs roscpp actionlib tf)
 find_package(Boost REQUIRED COMPONENTS thread date_time filesystem system)
-find_package(youbot_driver)
-
-if (youbot_driver_FOUND)
-	message("found y")
-	message("${youbot_driver_INCLUDE_DIRS}")
-	message("config ${youbot_driver_ETC_DESTINATION}")
-endif (youbot_driver_FOUND)
-
+find_package(youbot_driver REQUIRED)
 
 add_message_files(FILES PowerBoardState.msg)
 generate_messages(DEPENDENCIES std_msgs)
@@ -53,8 +46,7 @@ ENDIF($ENV{USE_NORMAL_SUDO})
 IF(USE_SETCAP)
 add_custom_command(TARGET youbot_oodl POST_BUILD
     #COMMAND sudo setcap cap_net_raw+ep youbot_oodl
-    COMMAND ${SUDO_COMMAND} setcap cap_net_raw+ep youbot_oodl
-    WORKING_DIRECTORY ${EXECUTABLE_OUTPUT_PATH}
+    COMMAND ${SUDO_COMMAND} setcap cap_net_raw+ep $<TARGET_FILE:youbot_oodl>
 )    
 endif(USE_SETCAP)
 
