@@ -8,6 +8,7 @@ find_package(youbot_driver)
 if (youbot_driver_FOUND)
 	message("found y")
 	message("${youbot_driver_INCLUDE_DIRS}")
+	message("config ${youbot_driver_ETC_DESTINATION}")
 endif (youbot_driver_FOUND)
 
 
@@ -17,7 +18,7 @@ generate_messages(DEPENDENCIES std_msgs)
 catkin_package()
 
 ## preprocessor definitions
-ADD_DEFINITIONS(-DYOUBOT_CONFIGURATIONS_DIR="${youbot_driver_PACKAGE_PATH}/config/")
+ADD_DEFINITIONS(-DYOUBOT_CONFIGURATIONS_DIR=${youbot_driver_CONFIG_DIR})
 
 ## Set Compiler flags
 INCLUDE_DIRECTORIES(
