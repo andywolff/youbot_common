@@ -1,14 +1,16 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(youbot_oodl)
 
-find_package(catkin REQUIRED COMPONENTS message_generation std_msgs roscpp actionlib tf)
+find_package(catkin REQUIRED COMPONENTS message_generation std_msgs roscpp actionlib tf control_msgs)
 find_package(Boost REQUIRED COMPONENTS thread date_time filesystem system)
 find_package(youbot_driver REQUIRED)
 
 add_message_files(FILES PowerBoardState.msg)
 generate_messages(DEPENDENCIES std_msgs)
 
-catkin_package()
+catkin_package(
+	CATKIN_DEPENDS message_runtime
+)
 
 ## preprocessor definitions
 ADD_DEFINITIONS(-DYOUBOT_CONFIGURATIONS_DIR=${youbot_driver_CONFIG_DIR})
@@ -30,6 +32,7 @@ add_executable(youbot_oodl
 )
 
 target_link_libraries(youbot_oodl ${catkin_LIBRARIES} ${Boost_LIBRARIES} ${youbot_driver_LIBRARIES})
+add_dependencies(youbot_oodl youbot_oodl_gencpp)
 
 install(DIRECTORY launch/
 	DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/launch
