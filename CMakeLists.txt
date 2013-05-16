@@ -1,9 +1,20 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(youbot_oodl)
 
-find_package(catkin REQUIRED COMPONENTS message_generation std_msgs roscpp actionlib tf control_msgs)
+find_package(catkin REQUIRED COMPONENTS message_generation std_msgs roscpp actionlib tf control_msgs youbot_driver)
 find_package(Boost REQUIRED COMPONENTS thread date_time filesystem system)
-find_package(youbot_driver REQUIRED)
+
+message(STATUS "catkin_INCLUDE_DIRS:" ${catkin_INCLUDE_DIRS})
+message(STATUS "catkin_LIBRARIES:" ${catkin_LIBRARIES})
+#find_package(youbot_driver REQUIRED)
+
+#message(STATUS "found youbot_driver? " ${youbot_driver_FOUND})
+
+#message(STATUS "youbot_driver_INCLUDE_DIRS:")
+#message(STATUS ${youbot_driver_INCLUDE_DIRS})
+
+#message(STATUS "youbot_driver_LIBRARIES:")
+#message(STATUS ${youbot_driver_LIBRARIES})
 
 add_message_files(FILES PowerBoardState.msg)
 generate_messages(DEPENDENCIES std_msgs)
@@ -13,14 +24,16 @@ catkin_package(
 )
 
 ## preprocessor definitions
-ADD_DEFINITIONS(-DYOUBOT_CONFIGURATIONS_DIR=${youbot_driver_CONFIG_DIR})
+#ADD_DEFINITIONS(-DYOUBOT_CONFIGURATIONS_DIR=${youbot_driver_CONFIG_DIR})
+
+#message(STATUS "youbot_driver_CONFIG_DIR = " ${youbot_driver_CONFIG_DIR})
 
 ## Set Compiler flags
 INCLUDE_DIRECTORIES(
 	include
 	${catkin_INCLUDE_DIRS}
 	${Boost_INCLUDE_DIR}
-	${youbot_driver_INCLUDE_DIRS}
+#	${youbot_driver_INCLUDE_DIRS}
 )	
 
 
@@ -31,7 +44,7 @@ add_executable(youbot_oodl
     src/joint_state_observer_oodl.cpp
 )
 
-target_link_libraries(youbot_oodl ${catkin_LIBRARIES} ${Boost_LIBRARIES} ${youbot_driver_LIBRARIES})
+target_link_libraries(youbot_oodl ${catkin_LIBRARIES} ${Boost_LIBRARIES}) # ${youbot_driver_LIBRARIES})
 add_dependencies(youbot_oodl youbot_oodl_gencpp)
 
 install(DIRECTORY launch/
@@ -57,12 +70,12 @@ endif(USE_SETCAP)
 add_executable(youbot_arm_test 
     examples/youbot_arm_test.cpp 
 )
-target_link_libraries(youbot_arm_test ${catkin_LIBRARIES} ${Boost_LIBRARIES} ${youbot_driver_LIBRARIES})
+target_link_libraries(youbot_arm_test ${catkin_LIBRARIES} ${Boost_LIBRARIES})# ${youbot_driver_LIBRARIES})
 
 add_executable(youbot_2nd_arm_test 
     examples/youbot_2nd_arm_test.cpp 
 )
-target_link_libraries(youbot_2nd_arm_test ${catkin_LIBRARIES} ${Boost_LIBRARIES} ${youbot_driver_LIBRARIES})
+target_link_libraries(youbot_2nd_arm_test ${catkin_LIBRARIES} ${Boost_LIBRARIES})# ${youbot_driver_LIBRARIES})
 
 
 install(TARGETS youbot_oodl youbot_arm_test

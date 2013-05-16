@@ -58,7 +58,11 @@ int main(int argc, char **argv)
 	n.param("youBotHasBase", youBotHasBase, true);
 	n.param("youBotHasArms", youBotHasArms, true);
 	n.param("youBotDriverCycleFrequencyInHz", youBotDriverCycleFrequencyInHz, 50.0);
-	n.param<std::string>("youBotConfigurationFilePath", youBot.youBotConfiguration.configurationFilePath, mkstr(YOUBOT_CONFIGURATIONS_DIR));
+
+	char* configLocation = getenv("YOUBOT_CONFIG_FOLDER_LOCATION");
+	if(configLocation == NULL) throw std::runtime_error("YouBotArmTest.cpp: Could not find environment variable YOUBOT_CONFIG_FOLDER_LOCATION");
+
+	n.param<std::string>("youBotConfigurationFilePath", youBot.youBotConfiguration.configurationFilePath, configLocation);
 	n.param<std::string>("youBotBaseName", youBot.youBotConfiguration.baseConfiguration.baseID, "youbot-base");
 
 
