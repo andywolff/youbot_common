@@ -4,18 +4,6 @@ project(youbot_oodl)
 find_package(catkin REQUIRED COMPONENTS message_generation std_msgs roscpp actionlib tf control_msgs youbot_driver)
 find_package(Boost REQUIRED COMPONENTS thread date_time filesystem system)
 
-message(STATUS "catkin_INCLUDE_DIRS:" ${catkin_INCLUDE_DIRS})
-message(STATUS "catkin_LIBRARIES:" ${catkin_LIBRARIES})
-#find_package(youbot_driver REQUIRED)
-
-#message(STATUS "found youbot_driver? " ${youbot_driver_FOUND})
-
-#message(STATUS "youbot_driver_INCLUDE_DIRS:")
-#message(STATUS ${youbot_driver_INCLUDE_DIRS})
-
-#message(STATUS "youbot_driver_LIBRARIES:")
-#message(STATUS ${youbot_driver_LIBRARIES})
-
 add_message_files(FILES PowerBoardState.msg)
 generate_messages(DEPENDENCIES std_msgs)
 
@@ -68,12 +56,12 @@ endif(USE_SETCAP)
 
 #test programs
 add_executable(youbot_arm_test 
-    examples/youbot_arm_test.cpp 
+    src/examples/youbot_arm_test.cpp 
 )
 target_link_libraries(youbot_arm_test ${catkin_LIBRARIES} ${Boost_LIBRARIES})# ${youbot_driver_LIBRARIES})
 
 add_executable(youbot_2nd_arm_test 
-    examples/youbot_2nd_arm_test.cpp 
+    src/examples/youbot_2nd_arm_test.cpp 
 )
 target_link_libraries(youbot_2nd_arm_test ${catkin_LIBRARIES} ${Boost_LIBRARIES})# ${youbot_driver_LIBRARIES})
 
