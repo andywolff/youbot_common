@@ -41,6 +41,7 @@ set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 
 ## Set Compilter flags
 INCLUDE_DIRECTORIES(
+        include
 	${OODL_YOUBOT_INCLUDE_DIR}
 	${Boost_INCLUDE_DIR}
 )	
@@ -77,6 +78,11 @@ rosbuild_add_executable(youbot_arm_test
 rosbuild_add_executable(youbot_2nd_arm_test 
     examples/youbot_2nd_arm_test.cpp 
 )
+
+rosbuild_add_library(youbot_trajectory_action_server 
+    src/joint_trajectory_action.cpp
+)
+
 
 #rosbuild_add_executable(youbot_arm_velocity_test 
 #    examples/youbot_arm_velocity_test.cpp 
