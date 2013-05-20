@@ -14,8 +14,12 @@ install:
   - sudo rosdep init
   - rosdep update 
   - mkdir -p /tmp/ws/src
-  - rosdep install --from-paths . --ignore-src --rosdistro groovy -y
+  - ln -s `pwd` /tmp/ws/src/youbot_oodl
+  - source /opt/ros/groovy/setup.bash
+  - export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:/tmp/ws/src/
+  - rosdep install youbot_oodl --ignore-src --rosdistro groovy -y
 
 script:
   - source /opt/ros/groovy/setup.bash
-  - rosmake .
+  - export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:/tmp/ws/src/
+  - rosmake youbot_oodl
