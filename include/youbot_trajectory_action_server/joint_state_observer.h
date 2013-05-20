@@ -47,9 +47,9 @@
 class JointStateObserver
 {
 public:
-    virtual void updatePosition(const brics_actuator::JointPositions& positions) = 0;
-    virtual void updateVelocity(const brics_actuator::JointVelocities& velocities) = 0;
-    virtual void updateTorque(const brics_actuator::JointTorques& torques) = 0;
+  virtual void updatePosition(const brics_actuator::JointPositions& positions) = 0;
+  virtual void updateVelocity(const brics_actuator::JointVelocities& velocities) = 0;
+  virtual void updateTorque(const brics_actuator::JointTorques& torques) = 0;
 private:
 
 };

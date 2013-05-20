@@ -37,79 +37,82 @@
  *
  ******************************************************************************/
 
-#include "YouBotOODLWrapper.h"
+#include "youbot_oodl/YouBotOODLWrapper.h"
 #include <stdlib.h>
 
 int main(int argc, char **argv)
 {
 
-  	youbot::Logger::toConsole = false;
-  	youbot::Logger::toFile = false;
-  	youbot::Logger::toROS = true;
-	ros::init(argc, argv, "youbot_oodl_driver");
-	ros::NodeHandle n;
-	youBot::YouBotOODLWrapper youBot(n);
-	std::vector<std::string> armNames;
+  youbot::Logger::toConsole = false;
+  youbot::Logger::toFile = false;
+  youbot::Logger::toROS = true;
+  ros::init(argc, argv, "youbot_oodl_driver");
+  ros::NodeHandle n;
+  youBot::YouBotOODLWrapper youBot(n);
+  std::vector<std::string> armNames;
 
+  /* configuration */
+  bool youBotHasBase;
+  bool youBotHasArms;
+  double youBotDriverCycleFrequencyInHz;	//the driver recives commands and publishes them with a fixed frequency
+  n.param("youBotHasBase", youBotHasBase, true);
+  n.param("youBotHasArms", youBotHasArms, true);
+  n.param("youBotDriverCycleFrequencyInHz", youBotDriverCycleFrequencyInHz, 50.0);
 
-	/* configuration */
-	bool youBotHasBase;
-	bool youBotHasArms;
-	double youBotDriverCycleFrequencyInHz;	//the driver recives commands and publishes them with a fixed frequency
-	n.param("youBotHasBase", youBotHasBase, true);
-	n.param("youBotHasArms", youBotHasArms, true);
-	n.param("youBotDriverCycleFrequencyInHz", youBotDriverCycleFrequencyInHz, 50.0);
+  //get the config file path from an environment variable
+  char* configLocation = getenv("YOUBOT_CONFIG_FOLDER_LOCATION");
+  if (configLocation == NULL)
+    throw std::runtime_error("YouBotArmTest.cpp: Could not find environment variable YOUBOT_CONFIG_FOLDER_LOCATION");
 
-	//get the config file path from an environment variable
-	char* configLocation = getenv("YOUBOT_CONFIG_FOLDER_LOCATION");
-if(configLocation == NULL) throw std::runtime_error("YouBotArmTest.cpp: Could not find environment variable YOUBOT_CONFIG_FOLDER_LOCATION");
+  n.param < std::string
+      > ("youBotConfigurationFilePath", youBot.youBotConfiguration.configurationFilePath, configLocation);
 
-n.param<std::string>("youBotConfigurationFilePath", youBot.youBotConfiguration.configurationFilePath, configLocation);
+  n.param < std::string > ("youBotBaseName", youBot.youBotConfiguration.baseConfiguration.baseID, "youbot-base");
 
-	n.param<std::string>("youBotBaseName", youBot.youBotConfiguration.baseConfiguration.baseID, "youbot-base");
+  // Retrieve all defined arm names from the launch file params
+  int i = 1;
+  std::stringstream armNameParam;
+  armNameParam << "youBotArmName" << i; // youBotArmName1 is first checked param... then youBotArmName2, etc.
+  while (n.hasParam(armNameParam.str()))
+  {
+    std::string armName;
+    n.getParam(armNameParam.str(), armName);
+    armNames.push_back(armName);
+    armNameParam.str("");
+    armNameParam << "youBotArmName" << (++i);
+  }
 
+  ros::ServiceServer reconnectService = n.advertiseService("reconnect", &youBot::YouBotOODLWrapper::reconnectCallback,
+                                                           &youBot);
 
-	// Retrieve all defined arm names from the launch file params
-	int i = 1;
-	std::stringstream armNameParam;
-	armNameParam << "youBotArmName" << i; // youBotArmName1 is first checked param... then youBotArmName2, etc.
-	while (n.hasParam(armNameParam.str())) {
-		std::string armName;
-		n.getParam(armNameParam.str(), armName);
-		armNames.push_back(armName);
-		armNameParam.str("");
-		armNameParam << "youBotArmName" <<  (++i);
-	}
+  ROS_ASSERT((youBotHasBase == true) || (youBotHasArms == true)); // At least one should be true, otherwise nothing to be started.
+  if (youBotHasBase == true)
+  {
+    youBot.initializeBase(youBot.youBotConfiguration.baseConfiguration.baseID);
+  }
 
-    ros::ServiceServer reconnectService = n.advertiseService("reconnect", &youBot::YouBotOODLWrapper::reconnectCallback, &youBot);
-
-    ROS_ASSERT((youBotHasBase == true) || (youBotHasArms == true)); // At least one should be true, otherwise nothing to be started.
-    if (youBotHasBase == true)
+  if (youBotHasArms == true)
+  {
+    std::vector<std::string>::iterator armNameIter;
+    for (armNameIter = armNames.begin(); armNameIter != armNames.end(); ++armNameIter)
     {
-        youBot.initializeBase(youBot.youBotConfiguration.baseConfiguration.baseID);
+      youBot.initializeArm(*armNameIter);
     }
+  }
 
-	if (youBotHasArms == true) {
-		std::vector<std::string>::iterator armNameIter;
-		for (armNameIter = armNames.begin(); armNameIter != armNames.end(); ++armNameIter) {
-			youBot.initializeArm(*armNameIter);
-		}
-	}
- 
+  /* coordination */
+  ros::Rate rate(youBotDriverCycleFrequencyInHz); //Input and output at the same time... (in Hz)
+  while (n.ok())
+  {
+    ros::spinOnce();
+    youBot.computeOODLSensorReadings();
+    youBot.publishOODLSensorReadings();
+    youBot.publishArmAndBaseDiagnostics(2.0);    //publish only every 2 seconds
+    rate.sleep();
+  }
 
-    /* coordination */
-    ros::Rate rate(youBotDriverCycleFrequencyInHz); //Input and output at the same time... (in Hz)
-    while (n.ok())
-    {
-        ros::spinOnce();
-        youBot.computeOODLSensorReadings();
-        youBot.publishOODLSensorReadings();
-        youBot.publishArmAndBaseDiagnostics(2.0);    //publish only every 2 seconds
-        rate.sleep();
-    }
+  youBot.stop();
 
-    youBot.stop();
-
-    return 0;
+  return 0;
 }
 
