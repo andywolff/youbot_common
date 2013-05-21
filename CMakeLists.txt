@@ -4,7 +4,7 @@ project(youbot_oodl)
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
-find_package(catkin REQUIRED COMPONENTS roscpp message_generation nav_msgs brics_actuator std_msgs roscpp actionlib tf control_msgs youbot_driver)
+find_package(catkin REQUIRED COMPONENTS roscpp message_generation nav_msgs std_srvs brics_actuator std_msgs roscpp actionlib tf control_msgs youbot_driver)
 find_package(Boost REQUIRED COMPONENTS thread date_time filesystem system)
 find_package(Eigen REQUIRED)
 
