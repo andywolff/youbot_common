@@ -37,7 +37,6 @@
  *
  ******************************************************************************/
 
-
 #ifndef JOINTTRAJECTORYACTION_H
 #define	JOINTTRAJECTORYACTION_H
 
@@ -60,57 +59,46 @@ class JointStateObserver;
 class JointTrajectoryAction
 {
 public:
-    JointTrajectoryAction(JointStateObserver* jointStateObserver);
-    JointTrajectoryAction(JointStateObserver* youbot,
-                          double velocityGain, double positionGain, double frequency);
-    JointTrajectoryAction(const JointTrajectoryAction& orig);
-    virtual ~JointTrajectoryAction();
+  JointTrajectoryAction(JointStateObserver* jointStateObserver);
+  JointTrajectoryAction(JointStateObserver* youbot, double velocityGain, double positionGain, double frequency);
+  JointTrajectoryAction(const JointTrajectoryAction& orig);
+  virtual ~JointTrajectoryAction();
 
-    void execute(const control_msgs::FollowJointTrajectoryGoalConstPtr& goal, Server* as);
+  void execute(const control_msgs::FollowJointTrajectoryGoalConstPtr& goal, Server* as);
 
-    void jointStateCallback(const sensor_msgs::JointState& joint_state);
-    void jointStateCallback(const brics_actuator::JointPositions& position,
-                            const brics_actuator::JointVelocities& velocity);
+  void jointStateCallback(const sensor_msgs::JointState& joint_state);
+  void jointStateCallback(const brics_actuator::JointPositions& position,
+                          const brics_actuator::JointVelocities& velocity);
 
-    void setVelocityGain(double velocityGain);
-    double getVelocityGain() const;
+  void setVelocityGain(double velocityGain);
+  double getVelocityGain() const;
 
+  void setPositionGain(double positionGain);
+  double getPositionGain() const;
 
-    void setPositionGain(double positionGain);
-    double getPositionGain() const;
-
-    void setFrequency(double frequency);
-    double getFrequency() const;
-
-
+  void setFrequency(double frequency);
+  double getFrequency() const;
 
 private:
 
-    double velocityGain;
-    double positionGain;
-    double frequency;
+  double velocityGain;
+  double positionGain;
+  double frequency;
 
-    sensor_msgs::JointState current_state;
-    JointStateObserver* jointStateObserver;
+  sensor_msgs::JointState current_state;
+  JointStateObserver* jointStateObserver;
 
 private:
 
-    double calculateVelocity(double actualAngle,
-                             double actualVelocity,
-                             const KDL::Trajectory_Composite& trajectoryComposite,
-                             double elapsedTimeInSec);
+  double calculateVelocity(double actualAngle, double actualVelocity,
+                           const KDL::Trajectory_Composite& trajectoryComposite, double elapsedTimeInSec);
 
-    void controlLoop(const std::vector<double>& actualJointAngles,
-                     const std::vector<double>& actualJointVelocities,
-                     const KDL::Trajectory_Composite* trajectoryComposite,
-                     int numberOfJoints,
-                     ros::Time startTime,
-                     std::vector<double>& velocities);
+  void controlLoop(const std::vector<double>& actualJointAngles, const std::vector<double>& actualJointVelocities,
+                   const KDL::Trajectory_Composite* trajectoryComposite, int numberOfJoints, ros::Time startTime,
+                   std::vector<double>& velocities);
 
-    void setTargetTrajectory(double angle1,
-                             double angle2,
-                             double duration,
-                             KDL::Trajectory_Composite& trajectoryComposite);
+  void setTargetTrajectory(double angle1, double angle2, double duration,
+                           KDL::Trajectory_Composite& trajectoryComposite);
 
 };
 

@@ -37,21 +37,22 @@
  *
  ******************************************************************************/
 
-#include "joint_state_observer_oodl.h"
-#include "YouBotOODLWrapper.h"
+#include "youbot_oodl/joint_state_observer_oodl.h"
+#include "youbot_oodl/YouBotOODLWrapper.h"
 
 namespace youBot
 {
 
 JointStateObserverOODL::JointStateObserverOODL(YouBotOODLWrapper* youBot, int youBotArmIndex)
 {
-    this->youBot = youBot;
-    this->youBotArmIndex = youBotArmIndex;
+  this->youBot = youBot;
+  this->youBotArmIndex = youBotArmIndex;
 }
 
-JointStateObserverOODL::JointStateObserverOODL(const JointStateObserverOODL& orig) : youBot(orig.youBot), youBotArmIndex(orig.youBotArmIndex)
+JointStateObserverOODL::JointStateObserverOODL(const JointStateObserverOODL& orig) :
+    youBot(orig.youBot), youBotArmIndex(orig.youBotArmIndex)
 {
-    
+
 }
 
 JointStateObserverOODL::~JointStateObserverOODL()
@@ -61,22 +62,21 @@ JointStateObserverOODL::~JointStateObserverOODL()
 
 void JointStateObserverOODL::updatePosition(const brics_actuator::JointPositions& positions)
 {
-    brics_actuator::JointPositionsConstPtr jointPositionsConstPtr(new brics_actuator::JointPositions(positions));
-    youBot->armPositionsCommandCallback(jointPositionsConstPtr, youBotArmIndex);
+  brics_actuator::JointPositionsConstPtr jointPositionsConstPtr(new brics_actuator::JointPositions(positions));
+  youBot->armPositionsCommandCallback(jointPositionsConstPtr, youBotArmIndex);
 
 }
 
 void JointStateObserverOODL::updateVelocity(const brics_actuator::JointVelocities& velocities)
 {
 
-    brics_actuator::JointVelocitiesConstPtr jointVelocitiesConstPtr(new brics_actuator::JointVelocities(velocities));
-    youBot->armVelocitiesCommandCallback(jointVelocitiesConstPtr, youBotArmIndex);
+  brics_actuator::JointVelocitiesConstPtr jointVelocitiesConstPtr(new brics_actuator::JointVelocities(velocities));
+  youBot->armVelocitiesCommandCallback(jointVelocitiesConstPtr, youBotArmIndex);
 
 }
 
 void JointStateObserverOODL::updateTorque(const brics_actuator::JointTorques& torques)
 {
-
 
 }
 

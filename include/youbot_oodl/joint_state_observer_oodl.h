@@ -54,17 +54,17 @@ class YouBotOODLWrapper;
 class JointStateObserverOODL : public JointStateObserver
 {
 public:
-    JointStateObserverOODL(YouBotOODLWrapper* youBot, int youBotArmIndex);
-    JointStateObserverOODL(const JointStateObserverOODL& orig);
-    virtual ~JointStateObserverOODL();
+  JointStateObserverOODL(YouBotOODLWrapper* youBot, int youBotArmIndex);
+  JointStateObserverOODL(const JointStateObserverOODL& orig);
+  virtual ~JointStateObserverOODL();
 
-    virtual void updatePosition(const brics_actuator::JointPositions& positions);
-    virtual void updateVelocity(const brics_actuator::JointVelocities& velocities);
-    virtual void updateTorque(const brics_actuator::JointTorques& torques);
+  virtual void updatePosition(const brics_actuator::JointPositions& positions);
+  virtual void updateVelocity(const brics_actuator::JointVelocities& velocities);
+  virtual void updateTorque(const brics_actuator::JointTorques& torques);
 
 private:
-    YouBotOODLWrapper* youBot;
-    int youBotArmIndex;
+  YouBotOODLWrapper* youBot;
+  int youBotArmIndex;
 };
 }
 
