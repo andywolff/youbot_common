@@ -7,19 +7,18 @@ compiler:
   - gcc
 
 install:
-  - sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu precise main" > /etc/apt/sources.list.d/ros-latest.list'
+  - sudo sh -c 'echo "deb http://packages.ros.org/ros-shadow-fixed/ubuntu precise main" > /etc/apt/sources.list.d/ros-latest.list'
   - wget http://packages.ros.org/ros.key -O - | sudo apt-key add -
   - sudo apt-get update -qq
-  - sudo apt-get install python-rosdep ros-groovy-rosmake -qq
+  - sudo apt-get install python-catkin-pkg python-rosdep ros-groovy-catkin -qq
   - sudo rosdep init
   - rosdep update 
   - mkdir -p /tmp/ws/src
   - ln -s `pwd` /tmp/ws/src/youbot_oodl
-  - source /opt/ros/groovy/setup.bash
-  - export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:/tmp/ws/src/
-  - rosdep install youbot_oodl --rosdistro groovy -y
+  - cd /tmp/ws
+  - rosdep install --from-paths src --ignore-src --rosdistro groovy -y
 
 script:
   - source /opt/ros/groovy/setup.bash
-  - export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:/tmp/ws/src/
-  - rosmake youbot_oodl
+  - catkin_make
+  - catkin_make install
