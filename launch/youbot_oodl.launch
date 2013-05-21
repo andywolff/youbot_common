@@ -1,37 +1,35 @@
 <?xml version="1.0"?>
-
 <launch>
+  <arg name="youBotHasBase" default="true" />
+  <arg name="youBotHasArms" value="true" /> 
+  <arg name="youBotDriverCycleFrequencyInHz" value="50.0" />
+  <arg name="trajectoryActionServerEnable" value="true" />
+  <arg name="trajectoryPositionGain" value="5.0"/ >
+  <arg name="trajectoryVelocityGain" value="0.0" />
+  <arg name="dualArm" value="false" />
+  <arg name="youBotBaseName" value="youbot-base"/>
+  <arg name="youBotArmName1" value="youbot-manipulator"/>
+  <arg name="youBotArmName2" value="youbot-manipulator-dual-arm"/>
 
-	<!-- Set relevant parameters. -->
-	<param name="youBotHasBase" type="bool" value="true"/>
-	<param name="youBotHasArms" type="bool" value="true"/> 
-	<param name="youBotDriverCycleFrequencyInHz" type="double" value="50.0"/>
-	<param name="trajectoryActionServerEnable" type="bool" value="true"/>
-    <param name="trajectoryPositionGain" type="double" value="5.0"/>
-    <param name="trajectoryVelocityGain" type="double" value="0.0"/>
+  <!-- Set Params -->
+  <param name="youBotHasBase" type="bool" value="$(arg youBotHasBase)" />
+  <param name="youBotHasArms" type="bool" value="$(arg youBotHasArms)" /> 
+  <param name="youBotDriverCycleFrequencyInHz" type="double" value="$(arg youBotDriverCycleFrequencyInHz)" />
+  <param name="trajectoryActionServerEnable" type="bool" value="$(arg trajectoryActionServerEnable)" />
+  <param name="trajectoryPositionGain" type="double" value="$(arg trajectoryPositionGain)" />
+  <param name="trajectoryVelocityGain" type="double" value="$(arg trajectoryVelocityGain)" />
+  <param name="youBotBaseName" type="str" value="$(arg youBotBaseName)" />
+  <param name="youBotArmName1" type="str" value="$(arg youBotArmName1)" />
 
-	<!-- 
-	  Initialize youBot arms by name. Each named arm must have a matching config
-	  file. For example, the entry:	 
-		  <param name="youBotArmName1" type="str" value="MyArm"/>
-	  will attempt to initialize an arm using the config file "MyArm.cfg" in your
-	  default configuration path.
-
-	  To initialize multiple arms, simply define parameters naming each of them,
-	  beginning with the parameter "youBotArmName1", then "youBotArmName2", etc.
-	-->
-	
-	<!-- Default name values --> 
-	<param name="youBotBaseName" type="str" value="youbot-base"/>
-	<param name="youBotArmName1" type="str" value="youbot-manipulator"/>
-	
-
-	<!-- Start the driver. NOTE: Every joint topic is mapped to armName/joint_states -->
-	<node name="youbot_oodl_driver" pkg="youbot_oodl" type="youbot_oodl" output="screen">
-			<remap from="base/joint_states" to="joint_states"/> 
-			<remap from="arm_1/joint_states" to="joint_states" /> 
-			<!--<remap from="arm_2/joint_states" to="joint_states" />-->
-	</node>
-		  
+  <group if="$(arg dualArm)">
+    <param name="youBotArmName2" type="str" value="$(arg youBotArmName2)" />
+    <node name="youbot_oodl_driver" pkg="youbot_oodl" type="youbot_oodl" output="screen" />
+  </node>
+  </group>
+  <group unless="$(arg dualArm)">
+    <node name="youbot_oodl" pkg="youbot_oodl" type="youbot_oodl" output="screen">
+      <remap from="base/joint_states" to="joint_states" /> 
+      <remap from="arm_1/joint_states" to="joint_states" />
+    </node>
+  </group>
 </launch>
-

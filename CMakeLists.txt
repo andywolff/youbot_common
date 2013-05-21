@@ -1,46 +1,99 @@
-cmake_minimum_required(VERSION 2.4.6)
-include($ENV{ROS_ROOT}/core/rosbuild/rosbuild.cmake)
+cmake_minimum_required(VERSION 2.8.3)
+project(youbot_oodl)
 
-## Check required prerequisites
-FIND_PACKAGE(Boost REQUIRED COMPONENTS thread date_time filesystem system)
+## Find catkin macros and libraries
+## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
+## is used, also find other catkin packages
+find_package(catkin REQUIRED COMPONENTS roscpp message_generation brics_actuator std_msgs roscpp actionlib tf control_msgs youbot_driver)
+find_package(Boost REQUIRED COMPONENTS thread date_time filesystem system)
+find_package(Eigen REQUIRED)
 
-# Set the build type.  Options are:
-#  Coverage       : w/ debug symbols, w/o optimization, w/ code-coverage
-#  Debug          : w/ debug symbols, w/o optimization
-#  Release        : w/o debug symbols, w/ optimization
-#  RelWithDebInfo : w/ debug symbols, w/ optimization
-#  MinSizeRel     : w/o debug symbols, w/ optimization, stripped binaries
-#set(ROS_BUILD_TYPE Release)
+#######################################
+## Declare ROS messages and services ##
+#######################################
 
-rosbuild_init()
+## Generate messages in the 'msg' folder
+add_message_files(
+  FILES
+  PowerBoardState.msg
+)
 
-# Set the default path for built executables to the "bin" directory
-set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
-# Set the default path for built libraries to the "lib" directory
-set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
+## Generate added messages and services with any dependencies listed here
+generate_messages(
+  DEPENDENCIES
+  std_msgs
+)
 
-## Set compiler flags
-INCLUDE_DIRECTORIES(
+
+###################################################
+## Declare things to be passed to other projects ##
+###################################################
+
+## LIBRARIES: libraries you create in this project that dependent projects also need
+## CATKIN_DEPENDS: catkin_packages dependent projects also need
+## DEPENDS: system dependencies of this project that dependent projects also need
+catkin_package(
+  INCLUDE_DIRS include
+  LIBRARIES youbot_trajectory_action_server
+)
+
+###########
+## Build ##
+###########
+
+## Specify additional locations of header files
+include_directories(
   include
-  ${Boost_INCLUDE_DIR}
-)	
-
-rosbuild_add_executable(youbot_oodl 
-    src/youbot_oodl.cpp 
-    src/YouBotOODLWrapper.cpp
-    src/YouBotConfiguration.cpp
-    src/joint_state_observer_oodl.cpp
+  ${catkin_INCLUDE_DIRS}
+  ${Boost_INCLUDE_DIRS}
+  ${EIGEN_INCLUDE_DIRS}
 )
 
-target_link_libraries(youbot_oodl soem YouBotDriver ${Boost_LIBRARIES})
-
-rosbuild_add_executable(youbot_arm_test 
-    src/examples/youbot_arm_test.cpp 
-)
-rosbuild_add_executable(youbot_2nd_arm_test 
-    src/examples/youbot_2nd_arm_test.cpp 
+link_directories(
+  ${catkin_LIBRARY_DIRS}
 )
 
-rosbuild_add_library(youbot_trajectory_action_server 
-    src/youbot_trajectory_action_server/joint_trajectory_action.cpp
+set(CMAKE_BUILD_TYPE Release)
+
+add_library(youbot_trajectory_action_server src/youbot_trajectory_action_server/joint_trajectory_action.cpp)
+target_link_libraries(youbot_trajectory_action_server ${catkin_LIBRARIES} ${EIGEN_DEFINITIONS})
+
+add_executable(${PROJECT_NAME}
+  src/youbot_oodl.cpp 
+  src/YouBotOODLWrapper.cpp
+  src/YouBotConfiguration.cpp
+  src/joint_state_observer_oodl.cpp
+)
+
+target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES} ${Boost_LIBRARIES})
+add_dependencies(${PROJECT_NAME} ${PROJECT_NAME}_gencpp)
+
+add_executable(youbot_arm_test 
+  src/examples/youbot_arm_test.cpp 
+)
+target_link_libraries(youbot_arm_test ${catkin_LIBRARIES})
+add_executable(youbot_2nd_arm_test 
+  src/examples/youbot_2nd_arm_test.cpp 
+)
+target_link_libraries(youbot_2nd_arm_test ${catkin_LIBRARIES})
+
+#############
+## Install ##
+#############
+
+## Mark executables and/or libraries for installation
+install(TARGETS ${PROJECT_NAME} youbot_arm_test youbot_2nd_arm_test youbot_trajectory_action_server
+  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+)
+
+## Copy header files
+install(DIRECTORY include/
+  DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
+  FILES_MATCHING PATTERN "*.hpp" PATTERN "*.h"
+)
+
+## Copy launch files
+install(DIRECTORY launch/
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/launch
 )

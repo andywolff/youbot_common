@@ -17,7 +17,7 @@ install:
   - ln -s `pwd` /tmp/ws/src/youbot_oodl
   - source /opt/ros/groovy/setup.bash
   - export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:/tmp/ws/src/
-  - rosdep install youbot_oodl --ignore-src --rosdistro groovy -y
+  - rosdep install youbot_oodl --rosdistro groovy -y
 
 script:
   - source /opt/ros/groovy/setup.bash

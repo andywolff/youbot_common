@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<package>
+  <name>youbot_oodl</name>
+  <version>0.1.0</version>
+  <description>ROS Wrapper for the KUKA youBot Driver</description>
+
+  <maintainer email="rctoris@wpi.edu">Russell Toris</maintainer>
+  <author email="blumenthal@locomotec.com">Sebastian Blumenthal</author>
+
+  <license>LGPL 2.1 or BSD</license>
+
+  <url type="website">http://ros.org/wiki/youbot_oodl</url>
+  <url type="bugtracker">https://github.com/WPI-RAIL/youbot_oodl/issues</url>
+  <url type="repository">https://github.com/WPI-RAIL/youbot_oodl</url>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>message_generation</build_depend>
+  <build_depend>brics_actuator</build_depend>
+  <build_depend>std_msgs</build_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>actionlib</build_depend>
+  <build_depend>tf</build_depend>
+  <build_depend>control_msgs</build_depend>
+  <build_depend>youbot_driver</build_depend>
+  <build_depend>roscpp</build_depend>
+  
+  <run_depend>brics_actuator</run_depend>
+  <run_depend>std_msgs</run_depend>
+  <run_depend>roscpp</run_depend>
+  <run_depend>actionlib</run_depend>
+  <run_depend>tf</run_depend>
+  <run_depend>control_msgs</run_depend>
+  <run_depend>youbot_driver</run_depend>
+  <run_depend>message_runtime</run_depend>
+  <run_depend>roscpp</run_depend>
+  <run_depend>libcap2-bin</run_depend>
+</package>
