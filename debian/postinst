@@ -1,3 +1,4 @@
 #!/bin/sh
 
+echo "Running setcap for youbot_oodl..."
 sudo setcap cap_net_raw+ep /opt/ros/groovy/lib/youbot_oodl/youbot_oodl
