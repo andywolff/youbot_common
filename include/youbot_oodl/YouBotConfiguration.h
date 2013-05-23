@@ -41,12 +41,12 @@
 #define YOUBOTCONFIGURATION_H_
 
 /* ROS includes */
-#include "ros/ros.h"
-#include "tf/transform_broadcaster.h"
+#include <ros/ros.h>
+#include <tf/transform_broadcaster.h>
 
 /* OODL includes */
-#include "youbot/YouBotBase.hpp"
-#include "youbot/YouBotManipulator.hpp"
+#include <youbot_driver/youbot/YouBotBase.hpp>
+#include <youbot_driver/youbot/YouBotManipulator.hpp>
 #include <actionlib/server/simple_action_server.h>
 #include <control_msgs/FollowJointTrajectoryAction.h>
 

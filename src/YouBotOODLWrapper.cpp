@@ -37,10 +37,10 @@
  *
  ******************************************************************************/
 
-#include "youbot_oodl/YouBotOODLWrapper.h"
-#include "youbot_oodl/joint_state_observer_oodl.h"
+#include <youbot_oodl/YouBotOODLWrapper.h>
+#include <youbot_oodl/joint_state_observer_oodl.h>
 
-#include <youbot_trajectory_action_server/joint_trajectory_action.h>
+#include <youbot_oodl/youbot_trajectory_action_server/joint_trajectory_action.h>
 #include <sstream>
 
 namespace youBot

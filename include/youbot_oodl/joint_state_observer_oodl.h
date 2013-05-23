@@ -40,7 +40,7 @@
 #ifndef JOINTSTATEOBSERVEROODL_H
 #define	JOINTSTATEOBSERVEROODL_H
 
-#include <youbot_trajectory_action_server/joint_state_observer.h>
+#include <youbot_oodl/youbot_trajectory_action_server/joint_state_observer.h>
 
 #include <brics_actuator/JointVelocities.h>
 #include <brics_actuator/JointTorques.h>
