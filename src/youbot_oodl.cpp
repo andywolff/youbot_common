@@ -37,7 +37,7 @@
  *
  ******************************************************************************/
 
-#include "youbot_oodl/YouBotOODLWrapper.h"
+#include <youbot_oodl/YouBotOODLWrapper.h>
 #include <stdlib.h>
 
 int main(int argc, char **argv)
