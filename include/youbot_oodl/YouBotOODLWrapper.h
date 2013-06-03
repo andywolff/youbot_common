@@ -45,24 +45,24 @@
 #define mkstr(X) mkstr2(X)
 
 /* ROS includes */
-#include "geometry_msgs/Twist.h"
-#include "tf/transform_broadcaster.h"
-#include "nav_msgs/Odometry.h"
-#include "std_srvs/Empty.h"
-#include "diagnostic_msgs/DiagnosticStatus.h"
+#include <geometry_msgs/Twist.h>
+#include <tf/transform_broadcaster.h>
+#include <nav_msgs/Odometry.h>
+#include <std_srvs/Empty.h>
+#include <diagnostic_msgs/DiagnosticStatus.h>
 #include <diagnostic_msgs/DiagnosticArray.h>
 #include <youbot_oodl/PowerBoardState.h>
 
-#include "trajectory_msgs/JointTrajectory.h"
-#include "sensor_msgs/JointState.h"
+#include <trajectory_msgs/JointTrajectory.h>
+#include <sensor_msgs/JointState.h>
 
-#include "brics_actuator/JointPositions.h"
-#include "brics_actuator/JointVelocities.h"
+#include <brics_actuator/JointPositions.h>
+#include <brics_actuator/JointVelocities.h>
 
 /* OODL includes */
-#include "YouBotConfiguration.h"
-#include "youbot/JointTrajectoryController.hpp"
-#include "youbot/DataTrace.hpp"
+#include <youbot_oodl/YouBotConfiguration.h>
+#include <youbot_driver/youbot/JointTrajectoryController.hpp>
+#include <youbot_driver/youbot/DataTrace.hpp>
 
 //#include <control_msgs/FollowJointTrajectoryAction.h>
 //#include <actionlib/server/simple_action_server.h>
