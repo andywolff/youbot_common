@@ -79,6 +79,15 @@ rosbuild_add_executable(youbot_2nd_arm_test
     examples/youbot_2nd_arm_test.cpp 
 )
 
+rosbuild_add_executable(youbot_arm_control_test 
+    examples/youbot_arm_control_test.cpp 
+)
+
+rosbuild_add_executable(youbot_arm_control_test_republisher 
+    examples/youbot_arm_control_test_republisher.cpp 
+)
+
+
 rosbuild_add_library(youbot_trajectory_action_server 
     src/joint_trajectory_action.cpp
 )

@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/adamj2010/ros-groovy/rosbuild/youbot_oodl/build/devel/setup.sh
