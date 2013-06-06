@@ -43,7 +43,7 @@ CMAKE_BINARY_DIR = /home/adamj2010/ros-groovy/rosbuild/youbot_oodl/build
 include CMakeFiles/rosbuild_clean-test-results.dir/progress.make
 
 CMakeFiles/rosbuild_clean-test-results:
-	if ! rm -rf /home/adamj2010/moveit/build/test_results/youbot_oodl; then echo WARNING:\ failed\ to\ remove\ test-results\ directory ; fi
+	if ! rm -rf /home/adamj2010/.ros/test_results/youbot_oodl; then echo WARNING:\ failed\ to\ remove\ test-results\ directory ; fi
 
 rosbuild_clean-test-results: CMakeFiles/rosbuild_clean-test-results
 rosbuild_clean-test-results: CMakeFiles/rosbuild_clean-test-results.dir/build.make

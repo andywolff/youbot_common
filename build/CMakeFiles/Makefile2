@@ -581,83 +581,13 @@ clean: CMakeFiles/youbot_2nd_arm_test.dir/clean
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/youbot_arm_control_test.dir
-
-# All Build rule for target.
-CMakeFiles/youbot_arm_control_test.dir/all: CMakeFiles/rosbuild_precompile.dir/all
-	$(MAKE) -f CMakeFiles/youbot_arm_control_test.dir/build.make CMakeFiles/youbot_arm_control_test.dir/depend
-	$(MAKE) -f CMakeFiles/youbot_arm_control_test.dir/build.make CMakeFiles/youbot_arm_control_test.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/adamj2010/ros-groovy/rosbuild/youbot_oodl/build/CMakeFiles  5
-	@echo "Built target youbot_arm_control_test"
-.PHONY : CMakeFiles/youbot_arm_control_test.dir/all
-
-# Include target in all.
-all: CMakeFiles/youbot_arm_control_test.dir/all
-.PHONY : all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/youbot_arm_control_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/adamj2010/ros-groovy/rosbuild/youbot_oodl/build/CMakeFiles 1
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/youbot_arm_control_test.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/adamj2010/ros-groovy/rosbuild/youbot_oodl/build/CMakeFiles 0
-.PHONY : CMakeFiles/youbot_arm_control_test.dir/rule
-
-# Convenience name for target.
-youbot_arm_control_test: CMakeFiles/youbot_arm_control_test.dir/rule
-.PHONY : youbot_arm_control_test
-
-# clean rule for target.
-CMakeFiles/youbot_arm_control_test.dir/clean:
-	$(MAKE) -f CMakeFiles/youbot_arm_control_test.dir/build.make CMakeFiles/youbot_arm_control_test.dir/clean
-.PHONY : CMakeFiles/youbot_arm_control_test.dir/clean
-
-# clean rule for target.
-clean: CMakeFiles/youbot_arm_control_test.dir/clean
-.PHONY : clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/youbot_arm_control_test_republisher.dir
-
-# All Build rule for target.
-CMakeFiles/youbot_arm_control_test_republisher.dir/all: CMakeFiles/rosbuild_precompile.dir/all
-	$(MAKE) -f CMakeFiles/youbot_arm_control_test_republisher.dir/build.make CMakeFiles/youbot_arm_control_test_republisher.dir/depend
-	$(MAKE) -f CMakeFiles/youbot_arm_control_test_republisher.dir/build.make CMakeFiles/youbot_arm_control_test_republisher.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/adamj2010/ros-groovy/rosbuild/youbot_oodl/build/CMakeFiles  6
-	@echo "Built target youbot_arm_control_test_republisher"
-.PHONY : CMakeFiles/youbot_arm_control_test_republisher.dir/all
-
-# Include target in all.
-all: CMakeFiles/youbot_arm_control_test_republisher.dir/all
-.PHONY : all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/youbot_arm_control_test_republisher.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/adamj2010/ros-groovy/rosbuild/youbot_oodl/build/CMakeFiles 1
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/youbot_arm_control_test_republisher.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/adamj2010/ros-groovy/rosbuild/youbot_oodl/build/CMakeFiles 0
-.PHONY : CMakeFiles/youbot_arm_control_test_republisher.dir/rule
-
-# Convenience name for target.
-youbot_arm_control_test_republisher: CMakeFiles/youbot_arm_control_test_republisher.dir/rule
-.PHONY : youbot_arm_control_test_republisher
-
-# clean rule for target.
-CMakeFiles/youbot_arm_control_test_republisher.dir/clean:
-	$(MAKE) -f CMakeFiles/youbot_arm_control_test_republisher.dir/build.make CMakeFiles/youbot_arm_control_test_republisher.dir/clean
-.PHONY : CMakeFiles/youbot_arm_control_test_republisher.dir/clean
-
-# clean rule for target.
-clean: CMakeFiles/youbot_arm_control_test_republisher.dir/clean
-.PHONY : clean
-
-#=============================================================================
 # Target rules for target CMakeFiles/youbot_arm_test.dir
 
 # All Build rule for target.
 CMakeFiles/youbot_arm_test.dir/all: CMakeFiles/rosbuild_precompile.dir/all
 	$(MAKE) -f CMakeFiles/youbot_arm_test.dir/build.make CMakeFiles/youbot_arm_test.dir/depend
 	$(MAKE) -f CMakeFiles/youbot_arm_test.dir/build.make CMakeFiles/youbot_arm_test.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/adamj2010/ros-groovy/rosbuild/youbot_oodl/build/CMakeFiles  7
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/adamj2010/ros-groovy/rosbuild/youbot_oodl/build/CMakeFiles  5
 	@echo "Built target youbot_arm_test"
 .PHONY : CMakeFiles/youbot_arm_test.dir/all
 
@@ -692,7 +622,7 @@ clean: CMakeFiles/youbot_arm_test.dir/clean
 CMakeFiles/youbot_oodl.dir/all: CMakeFiles/rosbuild_precompile.dir/all
 	$(MAKE) -f CMakeFiles/youbot_oodl.dir/build.make CMakeFiles/youbot_oodl.dir/depend
 	$(MAKE) -f CMakeFiles/youbot_oodl.dir/build.make CMakeFiles/youbot_oodl.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/adamj2010/ros-groovy/rosbuild/youbot_oodl/build/CMakeFiles  8 9 10 11
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/adamj2010/ros-groovy/rosbuild/youbot_oodl/build/CMakeFiles  6 7 8 9
 	@echo "Built target youbot_oodl"
 .PHONY : CMakeFiles/youbot_oodl.dir/all
 
@@ -721,13 +651,48 @@ clean: CMakeFiles/youbot_oodl.dir/clean
 .PHONY : clean
 
 #=============================================================================
+# Target rules for target CMakeFiles/youbot_teleop_arm.dir
+
+# All Build rule for target.
+CMakeFiles/youbot_teleop_arm.dir/all: CMakeFiles/rosbuild_precompile.dir/all
+	$(MAKE) -f CMakeFiles/youbot_teleop_arm.dir/build.make CMakeFiles/youbot_teleop_arm.dir/depend
+	$(MAKE) -f CMakeFiles/youbot_teleop_arm.dir/build.make CMakeFiles/youbot_teleop_arm.dir/build
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/adamj2010/ros-groovy/rosbuild/youbot_oodl/build/CMakeFiles  10
+	@echo "Built target youbot_teleop_arm"
+.PHONY : CMakeFiles/youbot_teleop_arm.dir/all
+
+# Include target in all.
+all: CMakeFiles/youbot_teleop_arm.dir/all
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/youbot_teleop_arm.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/adamj2010/ros-groovy/rosbuild/youbot_oodl/build/CMakeFiles 1
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/youbot_teleop_arm.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/adamj2010/ros-groovy/rosbuild/youbot_oodl/build/CMakeFiles 0
+.PHONY : CMakeFiles/youbot_teleop_arm.dir/rule
+
+# Convenience name for target.
+youbot_teleop_arm: CMakeFiles/youbot_teleop_arm.dir/rule
+.PHONY : youbot_teleop_arm
+
+# clean rule for target.
+CMakeFiles/youbot_teleop_arm.dir/clean:
+	$(MAKE) -f CMakeFiles/youbot_teleop_arm.dir/build.make CMakeFiles/youbot_teleop_arm.dir/clean
+.PHONY : CMakeFiles/youbot_teleop_arm.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/youbot_teleop_arm.dir/clean
+.PHONY : clean
+
+#=============================================================================
 # Target rules for target CMakeFiles/youbot_trajectory_action_server.dir
 
 # All Build rule for target.
 CMakeFiles/youbot_trajectory_action_server.dir/all: CMakeFiles/rosbuild_precompile.dir/all
 	$(MAKE) -f CMakeFiles/youbot_trajectory_action_server.dir/build.make CMakeFiles/youbot_trajectory_action_server.dir/depend
 	$(MAKE) -f CMakeFiles/youbot_trajectory_action_server.dir/build.make CMakeFiles/youbot_trajectory_action_server.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/adamj2010/ros-groovy/rosbuild/youbot_oodl/build/CMakeFiles  12
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/adamj2010/ros-groovy/rosbuild/youbot_oodl/build/CMakeFiles  11
 	@echo "Built target youbot_trajectory_action_server"
 .PHONY : CMakeFiles/youbot_trajectory_action_server.dir/all
 

@@ -11,12 +11,6 @@ SET(CMAKE_FORCE_UNIX_PATHS 1)
 # The C and CXX include file search paths:
 SET(CMAKE_C_INCLUDE_PATH
   "/home/adamj2010/ros-groovy/rosbuild/youbot_oodl/include"
-  "/opt/ros/groovy/stacks/pr2_common/pr2_msgs/msg_gen/cpp/include"
-  "/opt/ros/groovy/stacks/pr2_common/pr2_msgs/srv_gen/cpp/include"
-  "/home/adamj2010/ros-groovy/devel/include"
-  "/home/adamj2010/ros-groovy/src/youbot_driver/include"
-  "/opt/ros/groovy/include"
-  "/usr/include/eigen3"
   "/usr/src/gtest/include"
   "/usr/src/gtest"
   )

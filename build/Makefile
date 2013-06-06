@@ -358,32 +358,6 @@ youbot_2nd_arm_test/fast:
 .PHONY : youbot_2nd_arm_test/fast
 
 #=============================================================================
-# Target rules for targets named youbot_arm_control_test
-
-# Build rule for target.
-youbot_arm_control_test: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 youbot_arm_control_test
-.PHONY : youbot_arm_control_test
-
-# fast build rule for target.
-youbot_arm_control_test/fast:
-	$(MAKE) -f CMakeFiles/youbot_arm_control_test.dir/build.make CMakeFiles/youbot_arm_control_test.dir/build
-.PHONY : youbot_arm_control_test/fast
-
-#=============================================================================
-# Target rules for targets named youbot_arm_control_test_republisher
-
-# Build rule for target.
-youbot_arm_control_test_republisher: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 youbot_arm_control_test_republisher
-.PHONY : youbot_arm_control_test_republisher
-
-# fast build rule for target.
-youbot_arm_control_test_republisher/fast:
-	$(MAKE) -f CMakeFiles/youbot_arm_control_test_republisher.dir/build.make CMakeFiles/youbot_arm_control_test_republisher.dir/build
-.PHONY : youbot_arm_control_test_republisher/fast
-
-#=============================================================================
 # Target rules for targets named youbot_arm_test
 
 # Build rule for target.
@@ -408,6 +382,19 @@ youbot_oodl: cmake_check_build_system
 youbot_oodl/fast:
 	$(MAKE) -f CMakeFiles/youbot_oodl.dir/build.make CMakeFiles/youbot_oodl.dir/build
 .PHONY : youbot_oodl/fast
+
+#=============================================================================
+# Target rules for targets named youbot_teleop_arm
+
+# Build rule for target.
+youbot_teleop_arm: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 youbot_teleop_arm
+.PHONY : youbot_teleop_arm
+
+# fast build rule for target.
+youbot_teleop_arm/fast:
+	$(MAKE) -f CMakeFiles/youbot_teleop_arm.dir/build.make CMakeFiles/youbot_teleop_arm.dir/build
+.PHONY : youbot_teleop_arm/fast
 
 #=============================================================================
 # Target rules for targets named youbot_trajectory_action_server
@@ -472,54 +459,6 @@ examples/youbot_2nd_arm_test.cpp.s:
 	$(MAKE) -f CMakeFiles/youbot_2nd_arm_test.dir/build.make CMakeFiles/youbot_2nd_arm_test.dir/examples/youbot_2nd_arm_test.cpp.s
 .PHONY : examples/youbot_2nd_arm_test.cpp.s
 
-examples/youbot_arm_control_test.o: examples/youbot_arm_control_test.cpp.o
-.PHONY : examples/youbot_arm_control_test.o
-
-# target to build an object file
-examples/youbot_arm_control_test.cpp.o:
-	$(MAKE) -f CMakeFiles/youbot_arm_control_test.dir/build.make CMakeFiles/youbot_arm_control_test.dir/examples/youbot_arm_control_test.cpp.o
-.PHONY : examples/youbot_arm_control_test.cpp.o
-
-examples/youbot_arm_control_test.i: examples/youbot_arm_control_test.cpp.i
-.PHONY : examples/youbot_arm_control_test.i
-
-# target to preprocess a source file
-examples/youbot_arm_control_test.cpp.i:
-	$(MAKE) -f CMakeFiles/youbot_arm_control_test.dir/build.make CMakeFiles/youbot_arm_control_test.dir/examples/youbot_arm_control_test.cpp.i
-.PHONY : examples/youbot_arm_control_test.cpp.i
-
-examples/youbot_arm_control_test.s: examples/youbot_arm_control_test.cpp.s
-.PHONY : examples/youbot_arm_control_test.s
-
-# target to generate assembly for a file
-examples/youbot_arm_control_test.cpp.s:
-	$(MAKE) -f CMakeFiles/youbot_arm_control_test.dir/build.make CMakeFiles/youbot_arm_control_test.dir/examples/youbot_arm_control_test.cpp.s
-.PHONY : examples/youbot_arm_control_test.cpp.s
-
-examples/youbot_arm_control_test_republisher.o: examples/youbot_arm_control_test_republisher.cpp.o
-.PHONY : examples/youbot_arm_control_test_republisher.o
-
-# target to build an object file
-examples/youbot_arm_control_test_republisher.cpp.o:
-	$(MAKE) -f CMakeFiles/youbot_arm_control_test_republisher.dir/build.make CMakeFiles/youbot_arm_control_test_republisher.dir/examples/youbot_arm_control_test_republisher.cpp.o
-.PHONY : examples/youbot_arm_control_test_republisher.cpp.o
-
-examples/youbot_arm_control_test_republisher.i: examples/youbot_arm_control_test_republisher.cpp.i
-.PHONY : examples/youbot_arm_control_test_republisher.i
-
-# target to preprocess a source file
-examples/youbot_arm_control_test_republisher.cpp.i:
-	$(MAKE) -f CMakeFiles/youbot_arm_control_test_republisher.dir/build.make CMakeFiles/youbot_arm_control_test_republisher.dir/examples/youbot_arm_control_test_republisher.cpp.i
-.PHONY : examples/youbot_arm_control_test_republisher.cpp.i
-
-examples/youbot_arm_control_test_republisher.s: examples/youbot_arm_control_test_republisher.cpp.s
-.PHONY : examples/youbot_arm_control_test_republisher.s
-
-# target to generate assembly for a file
-examples/youbot_arm_control_test_republisher.cpp.s:
-	$(MAKE) -f CMakeFiles/youbot_arm_control_test_republisher.dir/build.make CMakeFiles/youbot_arm_control_test_republisher.dir/examples/youbot_arm_control_test_republisher.cpp.s
-.PHONY : examples/youbot_arm_control_test_republisher.cpp.s
-
 examples/youbot_arm_test.o: examples/youbot_arm_test.cpp.o
 .PHONY : examples/youbot_arm_test.o
 
@@ -543,6 +482,30 @@ examples/youbot_arm_test.s: examples/youbot_arm_test.cpp.s
 examples/youbot_arm_test.cpp.s:
 	$(MAKE) -f CMakeFiles/youbot_arm_test.dir/build.make CMakeFiles/youbot_arm_test.dir/examples/youbot_arm_test.cpp.s
 .PHONY : examples/youbot_arm_test.cpp.s
+
+examples/youbot_teleop_arm.o: examples/youbot_teleop_arm.cpp.o
+.PHONY : examples/youbot_teleop_arm.o
+
+# target to build an object file
+examples/youbot_teleop_arm.cpp.o:
+	$(MAKE) -f CMakeFiles/youbot_teleop_arm.dir/build.make CMakeFiles/youbot_teleop_arm.dir/examples/youbot_teleop_arm.cpp.o
+.PHONY : examples/youbot_teleop_arm.cpp.o
+
+examples/youbot_teleop_arm.i: examples/youbot_teleop_arm.cpp.i
+.PHONY : examples/youbot_teleop_arm.i
+
+# target to preprocess a source file
+examples/youbot_teleop_arm.cpp.i:
+	$(MAKE) -f CMakeFiles/youbot_teleop_arm.dir/build.make CMakeFiles/youbot_teleop_arm.dir/examples/youbot_teleop_arm.cpp.i
+.PHONY : examples/youbot_teleop_arm.cpp.i
+
+examples/youbot_teleop_arm.s: examples/youbot_teleop_arm.cpp.s
+.PHONY : examples/youbot_teleop_arm.s
+
+# target to generate assembly for a file
+examples/youbot_teleop_arm.cpp.s:
+	$(MAKE) -f CMakeFiles/youbot_teleop_arm.dir/build.make CMakeFiles/youbot_teleop_arm.dir/examples/youbot_teleop_arm.cpp.s
+.PHONY : examples/youbot_teleop_arm.cpp.s
 
 src/YouBotConfiguration.o: src/YouBotConfiguration.cpp.o
 .PHONY : src/YouBotConfiguration.o
@@ -693,25 +656,21 @@ help:
 	@echo "... test-results-run"
 	@echo "... tests"
 	@echo "... youbot_2nd_arm_test"
-	@echo "... youbot_arm_control_test"
-	@echo "... youbot_arm_control_test_republisher"
 	@echo "... youbot_arm_test"
 	@echo "... youbot_oodl"
+	@echo "... youbot_teleop_arm"
 	@echo "... youbot_trajectory_action_server"
 	@echo "... gtest"
 	@echo "... gtest_main"
 	@echo "... examples/youbot_2nd_arm_test.o"
 	@echo "... examples/youbot_2nd_arm_test.i"
 	@echo "... examples/youbot_2nd_arm_test.s"
-	@echo "... examples/youbot_arm_control_test.o"
-	@echo "... examples/youbot_arm_control_test.i"
-	@echo "... examples/youbot_arm_control_test.s"
-	@echo "... examples/youbot_arm_control_test_republisher.o"
-	@echo "... examples/youbot_arm_control_test_republisher.i"
-	@echo "... examples/youbot_arm_control_test_republisher.s"
 	@echo "... examples/youbot_arm_test.o"
 	@echo "... examples/youbot_arm_test.i"
 	@echo "... examples/youbot_arm_test.s"
+	@echo "... examples/youbot_teleop_arm.o"
+	@echo "... examples/youbot_teleop_arm.i"
+	@echo "... examples/youbot_teleop_arm.s"
 	@echo "... src/YouBotConfiguration.o"
 	@echo "... src/YouBotConfiguration.i"
 	@echo "... src/YouBotConfiguration.s"

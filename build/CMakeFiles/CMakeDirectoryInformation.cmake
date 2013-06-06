@@ -13,9 +13,9 @@ SET(CMAKE_C_INCLUDE_PATH
   "../include"
   "/opt/ros/groovy/stacks/pr2_common/pr2_msgs/msg_gen/cpp/include"
   "/opt/ros/groovy/stacks/pr2_common/pr2_msgs/srv_gen/cpp/include"
+  "/opt/ros/groovy/include"
   "/home/adamj2010/ros-groovy/devel/include"
   "/home/adamj2010/ros-groovy/src/youbot_driver/include"
-  "/opt/ros/groovy/include"
   "/usr/include/eigen3"
   )
 SET(CMAKE_CXX_INCLUDE_PATH ${CMAKE_C_INCLUDE_PATH})
