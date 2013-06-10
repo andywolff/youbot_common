@@ -77,22 +77,12 @@ add_executable(youbot_2nd_arm_test
 )
 target_link_libraries(youbot_2nd_arm_test ${catkin_LIBRARIES})
 
-add_executable(youbot_arm_control_test
-  src/examples/youbot_arm_control_test.cpp
-)
-target_link_libraries(youbot_arm_control_test ${catkin_LIBRARIES})
-
-add_executable(youbot_arm_control_test_republisher
-  src/examples/youbot_arm_control_test_republisher.cpp
-)
-target_link_libraries(youbot_arm_control_test_republisher ${catkin_LIBRARIES})
-
 #############
 ## Install ##
 #############
 
 ## Mark executables and/or libraries for installation
-install(TARGETS ${PROJECT_NAME} youbot_arm_test youbot_2nd_arm_test youbot_trajectory_action_server youbot_arm_control_test youbot_arm_control_test_republisher
+install(TARGETS ${PROJECT_NAME} youbot_arm_test youbot_2nd_arm_test youbot_trajectory_action_server
   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
