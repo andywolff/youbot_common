@@ -7,7 +7,7 @@ SET(Boost_ADDITIONAL_VERSIONS "1.39" "1.39.0" "1.40" "1.40.0" "1.41" "1.41.0" "1
 FIND_PACKAGE(Boost REQUIRED COMPONENTS thread date_time filesystem system)
 
 
-rosbuild_find_ros_package(youbot_driver)
+rosbuild_find_ros_package(youbot_driver pr2_controller_manager)
 
 ## preprocessor definitions
 ADD_DEFINITIONS(-DYOUBOT_CONFIGURATIONS_DIR="${youbot_driver_PACKAGE_PATH}/config/")
@@ -83,6 +83,9 @@ rosbuild_add_library(youbot_trajectory_action_server
     src/joint_trajectory_action.cpp
 )
 
+rosbuild_add_executable(youbot_controller_manager 
+    src/youbot_controller_manager.cpp 
+)
 
 #rosbuild_add_executable(youbot_arm_velocity_test 
 #    examples/youbot_arm_velocity_test.cpp 

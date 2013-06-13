@@ -23,6 +23,11 @@
   <depend package="diagnostic_msgs"/>
   <depend package="pr2_msgs"/>
   <depend package="orocos_kdl"/>
+  <depend package="pr2_hardware_interface"/>
+  <depend package="pr2_controller_interface"/>
+  <depend package="pr2_mechanism_msgs" />
+  <depend package="pr2_controller_manager"/>
+  <depend package="ethercat_hardware"/>
 
 <export>
     <cpp cflags="-I${prefix}/cfg/cpp -I${prefix}/include `rosboost-cfg --cflags`" lflags="-Wl,-rpath,${prefix}/lib -L${prefix}/lib `rosboost-cfg --lflags thread`"/>

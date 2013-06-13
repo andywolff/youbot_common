@@ -5,7 +5,7 @@
 This launch file starts the ROS wrapper for the KUKA youBot API.
 
 
-If you receive an error message that contains "Excecute as root"
+If you receive an error message that contains "Execute as root"
 then go to the bin folder and execute: sudo setcap cap_net_raw+ep
 or enable the USE_SETCAP flag in the cmake file and recompile again.
 -->
