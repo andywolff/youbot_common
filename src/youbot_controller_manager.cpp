@@ -72,15 +72,26 @@ int main(int argc, char** argv)
 		return -1;
 	}
 
+	int timer = 0;
+
 	ros::AsyncSpinner spinner(4);
 	spinner.start();
 
 	ros::Rate rate(1000.0);
-
+	
 	ROS_INFO("YouBot controller manager starting!");
 	while (ros::ok()){
 		//ROS_INFO("BEEP");
-		cm.update();
+		if(timer < 15000)
+		{
+			cm.update();
+      if(timer % 1000 == 0)
+        std::cout << timer/1000 << "/15 seconds until Controller Timeout!\n"; 
+		}      
+
+		if(timer == 15000)
+			std::cout << "Controller Timeout has been reached!" << "\n";
+		timer++;
 		rate.sleep();
 	}
 
