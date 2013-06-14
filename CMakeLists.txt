@@ -4,7 +4,7 @@ project(youbot_oodl)
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
-find_package(catkin REQUIRED COMPONENTS roscpp message_generation nav_msgs std_srvs brics_actuator std_msgs roscpp actionlib tf control_msgs youbot_driver diagnostic_msgs orocos_kdl)
+find_package(catkin REQUIRED COMPONENTS roscpp message_generation nav_msgs std_srvs brics_actuator std_msgs roscpp actionlib tf control_msgs youbot_driver diagnostic_msgs orocos_kdl pr2_controller_manager)
 find_package(Boost REQUIRED COMPONENTS thread date_time filesystem system)
 find_package(Eigen REQUIRED)
 
@@ -17,8 +17,6 @@ add_message_files(
   FILES
   PowerBoardState.msg
 )
-
-#rosbuild_find_ros_package(youbot_driver pr2_controller_manager)
 
 ## Generate added messages and services with any dependencies listed here
 generate_messages(
