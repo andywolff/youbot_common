@@ -18,6 +18,8 @@ add_message_files(
   PowerBoardState.msg
 )
 
+#rosbuild_find_ros_package(youbot_driver pr2_controller_manager)
+
 ## Generate added messages and services with any dependencies listed here
 generate_messages(
   DEPENDENCIES
@@ -72,17 +74,23 @@ add_executable(youbot_arm_test
   src/examples/youbot_arm_test.cpp 
 )
 target_link_libraries(youbot_arm_test ${catkin_LIBRARIES})
+
 add_executable(youbot_2nd_arm_test 
   src/examples/youbot_2nd_arm_test.cpp 
 )
 target_link_libraries(youbot_2nd_arm_test ${catkin_LIBRARIES})
+
+add_executable(youbot_controller_manager 
+    src/youbot_controller_manager.cpp 
+)
+target_link_libraries(youbot_controller_manager ${catkin_LIBRARIES})
 
 #############
 ## Install ##
 #############
 
 ## Mark executables and/or libraries for installation
-install(TARGETS ${PROJECT_NAME} youbot_arm_test youbot_2nd_arm_test youbot_trajectory_action_server
+install(TARGETS ${PROJECT_NAME} youbot_arm_test youbot_2nd_arm_test youbot_trajectory_action_server youbot_controller_manager
   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
