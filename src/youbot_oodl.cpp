@@ -109,6 +109,13 @@ int main(int argc, char **argv)
     youBot.publishOODLSensorReadings();
     youBot.publishArmAndBaseDiagnostics(2.0);    //publish only every 2 seconds
     rate.sleep();
+
+    if (!youBot.youBotConfiguration.isEtherCATOkay()) {
+      std_srvs::Empty::Request req;
+      std_srvs::Empty::Response res;
+      youBot.reconnectCallback(req,res);
+    }
+
   }
 
   youBot.stop();

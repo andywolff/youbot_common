@@ -189,6 +189,9 @@ public:
   std::vector<YouBotArmConfiguration> youBotArmConfigurations;
   std::map<std::string, int> armNameToArmIndexMapping;
 
+  /// Whether every EtherCAT connection is okay
+  bool isEtherCATOkay();
+
   /// Publishes diagnostic messages
   ros::Publisher diagnosticArrayPublisher;
 
