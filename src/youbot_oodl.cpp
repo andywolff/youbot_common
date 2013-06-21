@@ -62,7 +62,7 @@ int main(int argc, char **argv)
   //get the config file path from an environment variable
   char* configLocation = getenv("YOUBOT_CONFIG_FOLDER_LOCATION");
   if (configLocation == NULL)
-    throw std::runtime_error("YouBotArmTest.cpp: Could not find environment variable YOUBOT_CONFIG_FOLDER_LOCATION");
+    throw std::runtime_error("youbot_oodl.cpp: Could not find environment variable YOUBOT_CONFIG_FOLDER_LOCATION");
 
   n.param < std::string
       > ("youBotConfigurationFilePath", youBot.youBotConfiguration.configurationFilePath, configLocation);
