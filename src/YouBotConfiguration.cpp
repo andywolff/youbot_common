@@ -116,6 +116,20 @@ YouBotConfiguration::~YouBotConfiguration()
   armNameToArmIndexMapping.clear();
 }
 
+bool YouBotConfiguration::isEtherCATOkay() {
+  //std::vector<YouBotArmConfiguration> youBotArmConfigurations
+  bool okay=true;
+  /*for (std::vector<YouBotArmConfiguration>::iterator it = youBotArmConfigurations.begin();
+        it != youBotArmConfigurations.end(); ++it)
+    {
+      if (!(*it).youBotArm->isEtherCATConnectionEstablished()) {
+        okay=false;
+        break;
+      }
+    }*/
+  return okay;
+}
+
 } // namespace youBot
 
 /* EOF */
