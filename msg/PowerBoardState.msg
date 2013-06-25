@@ -3,8 +3,10 @@ int8 STATE_NOPOWER=0
 int8 STATE_STANDBY=1
 int8 STATE_PUMPING=2
 int8 STATE_ON=3
+
 # Preferred over STATE_ON, keeping STATE_ON for backcompat
 int8 STATE_ENABLED=3
+
 int8 STATE_DISABLED=4
 
 int8 MASTER_NOPOWER=0
@@ -39,3 +41,4 @@ float64[3] circuit_voltage
 #Note - if the wireless run-stop is hit, this will be unobservable
 bool run_stop
 bool wireless_stop
+

@@ -37,6 +37,7 @@
  *
  ******************************************************************************/
 
+
 #include <youbot_oodl/YouBotConfiguration.h>
 
 namespace youBot
@@ -66,15 +67,18 @@ YouBotBaseConfiguration::YouBotBaseConfiguration()
   wheelNames.push_back("wheel_joint_fr"); //wheel #2
   wheelNames.push_back("wheel_joint_bl"); //wheel #3
   wheelNames.push_back("wheel_joint_br"); //wheel #4
+
 }
 
 YouBotBaseConfiguration::~YouBotBaseConfiguration()
 {
+
   // No delete of youBot base pointer - this class has no ownership
 }
 
 YouBotArmConfiguration::YouBotArmConfiguration()
 {
+
   youBotArm = 0;
   armJointTrajectoryAction = 0;
 

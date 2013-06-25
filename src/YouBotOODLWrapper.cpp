@@ -41,6 +41,7 @@
 #include <youbot_oodl/joint_state_observer_oodl.h>
 
 #include <youbot_oodl/youbot_trajectory_action_server/joint_trajectory_action.h>
+
 #include <sstream>
 
 namespace youBot
@@ -75,13 +76,16 @@ YouBotOODLWrapper::YouBotOODLWrapper(ros::NodeHandle n) :
 
 YouBotOODLWrapper::~YouBotOODLWrapper()
 {
+
   this->stop();
   dashboardMessagePublisher.shutdown();
   diagnosticArrayPublisher.shutdown();
+
 }
 
 void YouBotOODLWrapper::initializeBase(std::string baseName)
 {
+
 
   try
   {
@@ -120,6 +124,7 @@ void YouBotOODLWrapper::initializeBase(std::string baseName)
   ROS_INFO("Base is initialized.");
   youBotConfiguration.hasBase = true;
   areBaseMotorsSwitchedOn = true;
+
 }
 
 void YouBotOODLWrapper::initializeArm(std::string armName, bool enableStandardGripper)
@@ -786,6 +791,7 @@ void YouBotOODLWrapper::gripperPositionsCommandCallback(
 void YouBotOODLWrapper::computeOODLSensorReadings()
 {
 
+
   try
   {
     currentTime = ros::Time::now();
@@ -1008,7 +1014,6 @@ void YouBotOODLWrapper::computeOODLSensorReadings()
   {
     ROS_WARN_ONCE("%s", e.what());
   }
-
 }
 
 void YouBotOODLWrapper::publishOODLSensorReadings()
