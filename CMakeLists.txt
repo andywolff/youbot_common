@@ -4,7 +4,7 @@ project(youbot_oodl)
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
-find_package(catkin REQUIRED COMPONENTS roscpp message_generation nav_msgs std_srvs brics_actuator std_msgs roscpp actionlib tf control_msgs youbot_driver diagnostic_msgs orocos_kdl) #pr2_controller_manager)
+find_package(catkin REQUIRED COMPONENTS roscpp rosconsole message_generation nav_msgs std_srvs brics_actuator std_msgs roscpp actionlib tf control_msgs geometry_msgs youbot_driver diagnostic_msgs orocos_kdl) #pr2_controller_manager)
 find_package(Boost REQUIRED COMPONENTS thread date_time filesystem system)
 find_package(Eigen REQUIRED)
 
@@ -83,12 +83,18 @@ target_link_libraries(youbot_2nd_arm_test ${catkin_LIBRARIES})
 #)
 #target_link_libraries(youbot_controller_manager ${catkin_LIBRARIES})
 
+add_executable(youbot_network_estopper src/youbot_network_estopper/YoubotNetworkEstopper.cpp)
+target_link_libraries(youbot_network_estopper ${catkin_LIBRARIES})
+
+add_executable(heartbeat_generator src/youbot_network_estopper/HeartbeatGenerator.cpp)
+target_link_libraries(heartbeat_generator ${catkin_LIBRARIES})
+
 #############
 ## Install ##
 #############
 
 ## Mark executables and/or libraries for installation
-install(TARGETS ${PROJECT_NAME} youbot_arm_test youbot_2nd_arm_test youbot_trajectory_action_server #youbot_controller_manager
+install(TARGETS ${PROJECT_NAME} youbot_arm_test youbot_2nd_arm_test youbot_trajectory_action_server youbot_network_estopper heartbeat_generator #youbot_controller_manager
   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
