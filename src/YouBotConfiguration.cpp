@@ -38,7 +38,7 @@
  ******************************************************************************/
 
 
-#include <youbot_oodl/YouBotConfiguration.h>
+#include <YouBotConfiguration.h>
 
 namespace youBot
 {

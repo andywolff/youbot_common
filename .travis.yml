@@ -14,7 +14,7 @@ install:
   - sudo rosdep init
   - rosdep update 
   - mkdir -p /tmp/ws/src
-  - ln -s `pwd` /tmp/ws/src/youbot_oodl
+  - ln -s `pwd` /tmp/ws/src/youbot_common
   - cd /tmp/ws
   - rosdep install --from-paths src --ignore-src --rosdistro groovy -y
 

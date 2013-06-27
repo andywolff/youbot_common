@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(youbot_oodl)
+project(youbot_common)
 
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
@@ -58,15 +58,15 @@ set(CMAKE_BUILD_TYPE Release)
 add_library(youbot_trajectory_action_server src/youbot_trajectory_action_server/joint_trajectory_action.cpp)
 target_link_libraries(youbot_trajectory_action_server ${catkin_LIBRARIES} ${EIGEN_DEFINITIONS})
 
-add_executable(${PROJECT_NAME}
-  src/youbot_oodl.cpp 
+add_executable(youbot_wrapper
+  src/youbot_wrapper.cpp 
   src/YouBotOODLWrapper.cpp
   src/YouBotConfiguration.cpp
-  src/joint_state_observer_oodl.cpp
+  src/joint_state_observer.cpp
 )
 
-target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES} ${Boost_LIBRARIES})
-add_dependencies(${PROJECT_NAME} ${PROJECT_NAME}_gencpp)
+target_link_libraries(youbot_wrapper ${catkin_LIBRARIES} ${Boost_LIBRARIES})
+add_dependencies(youbot_wrapper youbot_wrapper_gencpp)
 
 add_executable(youbot_arm_test 
   src/examples/youbot_arm_test.cpp 
@@ -94,14 +94,14 @@ target_link_libraries(heartbeat_generator ${catkin_LIBRARIES})
 #############
 
 ## Mark executables and/or libraries for installation
-install(TARGETS ${PROJECT_NAME} youbot_arm_test youbot_2nd_arm_test youbot_trajectory_action_server youbot_network_estopper heartbeat_generator #youbot_controller_manager
+install(TARGETS youbot_wrapper youbot_arm_test youbot_2nd_arm_test youbot_trajectory_action_server youbot_network_estopper heartbeat_generator #youbot_controller_manager
   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
 ## Copy header files
-install(DIRECTORY include/${PROJECT_NAME}/
+install(DIRECTORY include/
   DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
   FILES_MATCHING PATTERN "*.hpp" PATTERN "*.h"
 )

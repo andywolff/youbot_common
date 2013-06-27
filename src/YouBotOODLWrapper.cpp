@@ -37,10 +37,10 @@
  *
  ******************************************************************************/
 
-#include <youbot_oodl/YouBotOODLWrapper.h>
-#include <youbot_oodl/joint_state_observer_oodl.h>
+#include <YouBotOODLWrapper.h>
+#include <joint_state_observer.h>
 
-#include <youbot_oodl/youbot_trajectory_action_server/joint_trajectory_action.h>
+#include <youbot_trajectory_action_server/joint_trajectory_action.h>
 
 #include <sstream>
 
@@ -70,7 +70,7 @@ YouBotOODLWrapper::YouBotOODLWrapper(ros::NodeHandle n) :
   gripperCycleCounter = 0;
   diagnosticNameArms = "platform_Arms";
   diagnosticNameBase = "platform_Base";
-  dashboardMessagePublisher = n.advertise < youbot_oodl::PowerBoardState > ("/dashboard/platform_state", 1);
+  dashboardMessagePublisher = n.advertise < youbot_common::PowerBoardState > ("/dashboard/platform_state", 1);
   diagnosticArrayPublisher = n.advertise < diagnostic_msgs::DiagnosticArray > ("/diagnostics", 1);
 }
 
@@ -1294,18 +1294,18 @@ void YouBotOODLWrapper::publishArmAndBaseDiagnostics(double publish_rate_in_secs
   platformStateMessage.header.stamp = ros::Time::now();
 
   if (youBotConfiguration.hasBase && areBaseMotorsSwitchedOn)
-    platformStateMessage.circuit_state[0] = youbot_oodl::PowerBoardState::STATE_ENABLED;
+    platformStateMessage.circuit_state[0] = youbot_common::PowerBoardState::STATE_ENABLED;
   else if (youBotConfiguration.hasBase && !areBaseMotorsSwitchedOn)
-    platformStateMessage.circuit_state[0] = youbot_oodl::PowerBoardState::STATE_STANDBY;
+    platformStateMessage.circuit_state[0] = youbot_common::PowerBoardState::STATE_STANDBY;
   else
-    platformStateMessage.circuit_state[0] = youbot_oodl::PowerBoardState::STATE_DISABLED;
+    platformStateMessage.circuit_state[0] = youbot_common::PowerBoardState::STATE_DISABLED;
 
   if (youBotConfiguration.hasArms && areArmMotorsSwitchedOn)
-    platformStateMessage.circuit_state[1] = youbot_oodl::PowerBoardState::STATE_ENABLED;
+    platformStateMessage.circuit_state[1] = youbot_common::PowerBoardState::STATE_ENABLED;
   else if (youBotConfiguration.hasArms && !areArmMotorsSwitchedOn)
-    platformStateMessage.circuit_state[1] = youbot_oodl::PowerBoardState::STATE_STANDBY;
+    platformStateMessage.circuit_state[1] = youbot_common::PowerBoardState::STATE_STANDBY;
   else
-    platformStateMessage.circuit_state[1] = youbot_oodl::PowerBoardState::STATE_DISABLED;
+    platformStateMessage.circuit_state[1] = youbot_common::PowerBoardState::STATE_DISABLED;
 
   // publish established messages
   dashboardMessagePublisher.publish(platformStateMessage);

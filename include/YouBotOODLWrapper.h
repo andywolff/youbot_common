@@ -52,7 +52,7 @@
 #include "diagnostic_msgs/DiagnosticStatus.h"
 #include <diagnostic_msgs/DiagnosticArray.h>
 
-#include "youbot_oodl/PowerBoardState.h"
+#include "youbot_common/PowerBoardState.h"
 
 #include "trajectory_msgs/JointTrajectory.h"
 #include "sensor_msgs/JointState.h"
@@ -62,8 +62,8 @@
 
 /* OODL includes */
 #include "YouBotConfiguration.h"
-#include "youbot/JointTrajectoryController.hpp"
-#include "youbot/DataTrace.hpp"
+#include "youbot_driver/youbot/JointTrajectoryController.hpp"
+#include "youbot_driver/youbot/DataTrace.hpp"
 
 //#include <control_msgs/FollowJointTrajectoryAction.h>
 //#include <actionlib/server/simple_action_server.h>
@@ -268,7 +268,7 @@ private:
     ros::Time lastDiagnosticPublishTime;
 
     ros::Publisher dashboardMessagePublisher;
-    youbot_oodl::PowerBoardState platformStateMessage;
+    youbot_common::PowerBoardState platformStateMessage;
 
     ros::Publisher diagnosticArrayPublisher;
     diagnostic_msgs::DiagnosticArray diagnosticArrayMessage;

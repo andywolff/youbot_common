@@ -44,9 +44,9 @@
 #include "ros/ros.h"
 #include "tf/transform_broadcaster.h"
 
-/* OODL includes */
-#include <youbot/YouBotBase.hpp>
-#include <youbot/YouBotManipulator.hpp>
+/* wrapper includes */
+#include <youbot_driver/youbot/YouBotBase.hpp>
+#include <youbot_driver/youbot/YouBotManipulator.hpp>
 #include <actionlib/server/simple_action_server.h>
 #include <control_msgs/FollowJointTrajectoryAction.h>
 
@@ -194,10 +194,13 @@ public:
     /// A youbot system has one or more arms
     std::vector<YouBotArmConfiguration> youBotArmConfigurations;
     std::map<std::string, int> armNameToArmIndexMapping;
-    
+
+    /// Whether every EtherCAT connection is okay
+    bool isEtherCATOkay();
+
     /// Publishes diagnostic messages
     ros::Publisher diagnosticArrayPublisher;
-    
+
     ros::Publisher dashboardMessagePublisher;
 };
 
