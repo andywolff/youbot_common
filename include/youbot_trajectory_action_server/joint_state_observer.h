@@ -37,51 +37,22 @@
  *
  ******************************************************************************/
 
+#ifndef JOINTSTATEOBSERVER_H
+#define	JOINTSTATEOBSERVER_H
 
-#include <youbot_oodl/joint_state_observer_oodl.h>
-#include <youbot_oodl/YouBotOODLWrapper.h>
+#include <brics_actuator/JointTorques.h>
+#include <brics_actuator/JointVelocities.h>
+#include <brics_actuator/JointPositions.h>
 
-
-namespace youBot
+class JointStateObserver
 {
+public:
+    virtual void updatePosition(const brics_actuator::JointPositions& positions) = 0;
+    virtual void updateVelocity(const brics_actuator::JointVelocities& velocities) = 0;
+    virtual void updateTorque(const brics_actuator::JointTorques& torques) = 0;
+private:
 
-JointStateObserverOODL::JointStateObserverOODL(YouBotOODLWrapper* youBot, int youBotArmIndex)
-{
+};
 
-  this->youBot = youBot;
-  this->youBotArmIndex = youBotArmIndex;
-}
+#endif	/* JOINTSTATEOBSERVER_H */
 
-JointStateObserverOODL::JointStateObserverOODL(const JointStateObserverOODL& orig) :
-    youBot(orig.youBot), youBotArmIndex(orig.youBotArmIndex)
-{
-
-}
-
-JointStateObserverOODL::~JointStateObserverOODL()
-{
-
-}
-
-void JointStateObserverOODL::updatePosition(const brics_actuator::JointPositions& positions)
-{
-
-  brics_actuator::JointPositionsConstPtr jointPositionsConstPtr(new brics_actuator::JointPositions(positions));
-  youBot->armPositionsCommandCallback(jointPositionsConstPtr, youBotArmIndex);
-}
-
-void JointStateObserverOODL::updateVelocity(const brics_actuator::JointVelocities& velocities)
-{
-
-  brics_actuator::JointVelocitiesConstPtr jointVelocitiesConstPtr(new brics_actuator::JointVelocities(velocities));
-  youBot->armVelocitiesCommandCallback(jointVelocitiesConstPtr, youBotArmIndex);
-
-
-}
-
-void JointStateObserverOODL::updateTorque(const brics_actuator::JointTorques& torques)
-{
-
-}
-
-}
